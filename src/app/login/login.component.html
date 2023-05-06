@@ -1,0 +1,64 @@
+<div class="login-container">
+  <div class="login-content">
+    <div *ngIf="!newUser" class="login-tie">
+      <div class="login-label">Login</div>
+      <div class="login-inputs">
+        <label for="username">usuário</label>
+        <input
+          type="text"
+          name="username"
+          placeholder="Nome"
+        />
+        <div style="display: flex; flex-direction: column; position: relative;">
+          <label for="password">senha</label>
+          <input
+            [type]="passwordType ? 'password' : 'text'"
+            name="password"
+            placeholder="Senha"
+          />
+          <i *ngIf="!passwordType" class="material-icons" (click)="changePasswordType()">visibility</i>
+          <i *ngIf="passwordType" class="material-icons" (click)="changePasswordType()">visibility_off</i>
+        </div>
+      </div>
+      <div class="login-button-tie">
+        <button class="login-button">Entrar</button>
+        <label (click)="createUser()" style="cursor: pointer" for="newuser">Criar usuário</label>
+      </div>
+    </div>
+    <div *ngIf="newUser" class="login-tie">
+      <div class="login-label">Criar usuário</div>
+      <div class="login-inputs">
+        <label for="username">usuário</label>
+        <input
+          type="text"
+          name="username"
+          placeholder="Nome"
+        />
+        <div style="display: flex; flex-direction: column; position: relative;">
+          <label for="password">senha</label>
+          <input
+            [type]="passwordType ? 'password' : 'text'"
+            name="password"
+            placeholder="Senha"
+          />
+          <i *ngIf="!passwordType" class="material-icons" (click)="changePasswordType()">visibility</i>
+          <i *ngIf="passwordType" class="material-icons" (click)="changePasswordType()">visibility_off</i>
+        </div>
+        <div style="display: flex; flex-direction: column; position: relative;">
+          <label for="password">Confirmar senha</label>
+          <input
+            [type]="passwordType ? 'password' : 'text'"
+            name="password"
+            placeholder="Senha"
+          />
+          <i *ngIf="!passwordType" class="material-icons" (click)="changePasswordType()">visibility</i>
+          <i *ngIf="passwordType" class="material-icons" (click)="changePasswordType()">visibility_off</i>
+        </div>
+      </div>
+      <div class="login-button-tie">
+        <button class="login-button">Criar</button>
+        <label (click)="createUser()" style="cursor: pointer" for="newuser">Voltar</label>
+      </div>
+    </div>
+  </div>
+</div>

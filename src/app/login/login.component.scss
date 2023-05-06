@@ -1,0 +1,97 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+
+  .login-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 500px;
+    width: 500px;
+    background-color: #323b48;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.4) -5px 5px,
+                rgba(0, 0, 0, 0.3) -10px 10px,
+                rgba(0, 0, 0, 0.2) -15px 15px,
+                rgba(0, 0, 0, 0.1) -20px 20px,
+                rgba(0, 0, 0, 0.05) -25px 25px;
+
+    .login-tie {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+
+      .login-label {
+        padding: 2rem;
+        font-size: 3.5rem;
+        font-family: "Raleway";
+        font-style: italic;
+        font-weight: 500;
+      }
+
+      .login-inputs {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 400px;
+
+        label {
+          padding: 20px 0;
+          font-family: "Raleway";
+        }
+
+        input {
+          height: 38px;
+          border-radius: 9px;
+          padding: 0 10px;
+          border: none;
+          color: #000;
+
+          &:focus {
+            outline: none;
+          }
+        }
+
+        i {
+          position: absolute;
+          right: 10px;
+          bottom: 7px;
+          color: #0000006e;
+          cursor: pointer;
+        }
+      }
+
+      .login-button-tie {
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+        margin-top: auto;
+        gap: 1rem;
+        align-items: center;
+
+        .login-button {
+          height: 38px;
+          width: 220px;
+          border: 1px solid #fff;
+          background-color: #007eff;
+          color: #fff;
+          border-radius: 9px;
+          box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.2);
+          cursor: pointer;
+
+          &:active {
+            transform: scale(0.99);
+          }
+        }
+      }
+
+    }
+  }
+}
