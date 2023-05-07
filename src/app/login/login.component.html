@@ -1,6 +1,6 @@
 <div class="login-container">
   <div class="login-content">
-    <div *ngIf="!newUser" class="login-tie">
+    <div *ngIf="pageType == 'login'" class="login-tie">
       <div class="login-label">Login</div>
       <div class="login-inputs">
         <label for="username">usuário</label>
@@ -8,6 +8,7 @@
           type="text"
           name="username"
           placeholder="Nome"
+          [(ngModel)]="userName"
         />
         <div style="display: flex; flex-direction: column; position: relative;">
           <label for="password">senha</label>
@@ -15,24 +16,40 @@
             [type]="passwordType ? 'password' : 'text'"
             name="password"
             placeholder="Senha"
+            [(ngModel)]="password"
           />
           <i *ngIf="!passwordType" class="material-icons" (click)="changePasswordType()">visibility</i>
           <i *ngIf="passwordType" class="material-icons" (click)="changePasswordType()">visibility_off</i>
         </div>
       </div>
       <div class="login-button-tie">
-        <button class="login-button">Entrar</button>
-        <label (click)="createUser()" style="cursor: pointer" for="newuser">Criar usuário</label>
+        <button (click)="toEnter()" class="login-button">Entrar</button>
+        <label (click)="toCreateUser('createUser')" style="cursor: pointer" for="newuser">Criar usuário</label>
       </div>
     </div>
-    <div *ngIf="newUser" class="login-tie">
+    <div *ngIf="pageType == 'createUser'" class="login-tie">
       <div class="login-label">Criar usuário</div>
       <div class="login-inputs">
-        <label for="username">usuário</label>
+        <label for="username">nome</label>
+        <input
+          type="text"
+          name="name"
+          placeholder="Nome"
+          [(ngModel)]="name"
+        />
+        <label for="username">e-mail</label>
+        <input
+          type="text"
+          name="email"
+          placeholder="e-mail"
+          [(ngModel)]="eMail"
+        />
+        <label for="username">nome do usuário</label>
         <input
           type="text"
           name="username"
-          placeholder="Nome"
+          placeholder="Nome do usuário"
+          [(ngModel)]="userName"
         />
         <div style="display: flex; flex-direction: column; position: relative;">
           <label for="password">senha</label>
@@ -40,24 +57,89 @@
             [type]="passwordType ? 'password' : 'text'"
             name="password"
             placeholder="Senha"
-          />
-          <i *ngIf="!passwordType" class="material-icons" (click)="changePasswordType()">visibility</i>
-          <i *ngIf="passwordType" class="material-icons" (click)="changePasswordType()">visibility_off</i>
-        </div>
-        <div style="display: flex; flex-direction: column; position: relative;">
-          <label for="password">Confirmar senha</label>
-          <input
-            [type]="passwordType ? 'password' : 'text'"
-            name="password"
-            placeholder="Senha"
+            [(ngModel)]="password"
           />
           <i *ngIf="!passwordType" class="material-icons" (click)="changePasswordType()">visibility</i>
           <i *ngIf="passwordType" class="material-icons" (click)="changePasswordType()">visibility_off</i>
         </div>
       </div>
       <div class="login-button-tie">
-        <button class="login-button">Criar</button>
-        <label (click)="createUser()" style="cursor: pointer" for="newuser">Voltar</label>
+        <button (click)="toSave()" class="login-button">Criar</button>
+        <label (click)="toCreateUser('login')" style="cursor: pointer" for="newuser">Já possuo conta</label>
+      </div>
+    </div>
+    <div *ngIf="pageType == 'logged'" class="user-tie">
+      <div class="header-user">
+        <div class="header-user-name"><span>Bem vindo(a) </span> <br>{{ name }}</div>
+        <div class="header-user-setting">
+          <i class="material-icons" title="editar" (click)="toEditUser()">edit</i>
+          <i class="material-icons" style="padding-left: 10px" title="deletar" (click)="deleteUser()">delete</i>
+        </div>
+      </div>
+      <div class="edit-user" *ngIf="isEditUser">
+        <div class="login-inputs">
+          <label for="username">nome</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Nome"
+            [(ngModel)]="nameEdited"
+          />
+          <label for="username">e-mail</label>
+          <input
+            type="text"
+            name="email"
+            placeholder="e-mail"
+            [(ngModel)]="eMailEdited"
+          />
+        </div>
+        <div>
+          <button class="task-button" (click)="updateUser()">editar usuário</button>
+        </div>
+      </div>
+      <div class="task-tie" *ngIf="!isEditUser">
+        <table>
+          <thead>
+            <tr>
+              <th>Suas tarefas</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="!noTasks">
+            <tr *ngFor="let task of taskResponse">
+              <td [style.color]="task.realized == 1 ? 'greenyellow': ''">{{ task.name }}</td>
+              <td>
+                <i class="material-icons" title="marcar como feita" (click)="doneTask(task)" [style.color]="task.realized == 1 ? 'greenyellow': ''">done</i>
+                <i class="material-icons" style="padding-left: 10px" (click)="editTaskId(task)" title="editar">edit</i>
+                <i class="material-icons" style="padding-left: 10px" (click)="deleteTask(task)" title="deletar">delete</i>
+              </td>
+            </tr>
+          </tbody>
+          <div *ngIf="noTasks">
+            <label for="">Nenhuma tarefa cadastrada</label>
+          </div>
+        </table>
+      </div>
+      <div class="task-button-tie" *ngIf="!isEditUser">
+        <button class="task-button" (click)="toCreateTask()">criar tarefa</button>
+      </div>
+      <div class="modal-task" *ngIf="openModal">
+        <div class="modal-task-tie">
+          <div style="display: flex; justify-content: flex-end; padding: 2rem;">
+            <i class="material-icons" (click)="openModal = !openModal">close</i>
+          </div>
+          <div class="modal-task-content login-inputs">
+            <label for="task">Nome da tarefa</label>
+            <input
+              type="text"
+              name="task"
+              placeholder="Nome da tarefa"
+              [(ngModel)]="taskName"
+            />
+            <div class="task-button-tie">
+              <button class="task-button" (click)="createTask()">salvar</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

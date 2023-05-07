@@ -11,8 +11,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 500px;
-    width: 500px;
+    height: 800px;
+    width: 600px;
     background-color: #323b48;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.4) -5px 5px,
@@ -25,11 +25,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: space-between;
       height: 100%;
       width: 100%;
 
       .login-label {
-        padding: 2rem;
+        display: flex;
+        align-items: flex-end;
+        height: 100px;
         font-size: 3.5rem;
         font-family: "Raleway";
         font-style: italic;
@@ -72,7 +75,6 @@
         display: flex;
         flex-direction: column;
         padding: 2rem;
-        margin-top: auto;
         gap: 1rem;
         align-items: center;
 
@@ -91,7 +93,159 @@
           }
         }
       }
+    }
 
+    .user-tie {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+
+      .header-user {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 2rem;
+
+        .header-user-name {
+          span {
+            font-size: 16px;
+            font-family: "Raleway";
+            font-weight: 700;
+          }
+        }
+      }
+
+      .task-tie {
+        border-top: 1px solid #fff;
+
+        table {
+          width: 100%;
+          padding: 0 2rem;
+
+          thead {
+            height: 50px;
+
+            th {
+              text-align: start;
+              font-size: 16px;
+            }
+          }
+
+          tbody {
+            td {
+              height: 50px;
+            }
+            td:last-child {
+              text-align: end;
+            }
+          }
+        }
+      }
+
+      .task-button-tie {
+        display: flex;
+        justify-content: center;
+        margin-top: auto;
+        padding: 2rem;
+
+        .task-button {
+          height: 38px;
+          width: 220px;
+          border: 1px solid #fff;
+          background-color: #007eff;
+          color: #fff;
+          border-radius: 9px;
+          box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.2);
+          cursor: pointer;
+
+          &:active {
+            transform: scale(0.99);
+          }
+        }
+      }
+
+      .modal-task {
+        position: fixed;
+        height: 100vh;
+        width: 100vw;
+        background-color: #000000ab;
+        top: 0;
+        left: 0;
+
+        .modal-task-tie {
+          height: 500px;
+          max-width: 500px;
+          background-color: #323b48;
+          position: fixed;
+          top: 30%;
+          left: 37%;
+          border-radius: 9px;
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          width: 100%;
+
+          .modal-task-content {
+            height: 100%;
+            padding-left: 2rem;
+          }
+        }
+      }
+    }
+  }
+
+  .edit-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .login-inputs {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+
+    label {
+      padding: 20px 0;
+      font-family: "Raleway";
+    }
+
+    input {
+      height: 38px;
+      border-radius: 9px;
+      padding: 0 10px;
+      border: none;
+      color: #000;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    i {
+      position: absolute;
+      right: 10px;
+      bottom: 7px;
+      color: #0000006e;
+      cursor: pointer;
+    }
+  }
+
+  .task-button {
+    height: 38px;
+    width: 220px;
+    border: 1px solid #fff;
+    background-color: #007eff;
+    color: #fff;
+    border-radius: 9px;
+    box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+
+    &:active {
+      transform: scale(0.99);
     }
   }
 }
