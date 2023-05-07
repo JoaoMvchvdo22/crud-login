@@ -64,3 +64,110 @@
     cursor: pointer;
   }
 }
+
+.user-tie {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+
+  .header-user {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2rem;
+
+    .header-user-name {
+      span {
+        font-size: 16px;
+        font-family: "Raleway";
+        font-weight: 700;
+      }
+    }
+  }
+
+  .task-tie {
+    border-top: 1px solid #fff;
+
+    table {
+      width: 100%;
+      padding: 0 2rem;
+
+      thead {
+        height: 50px;
+
+        th {
+          text-align: start;
+          font-size: 16px;
+        }
+      }
+
+      tbody {
+        td {
+          height: 50px;
+        }
+        td:last-child {
+          text-align: end;
+        }
+      }
+    }
+  }
+
+  .task-button-tie {
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+    padding: 2rem;
+
+    .task-button {
+      height: 38px;
+      width: 220px;
+      border: 1px solid #fff;
+      background-color: #007eff;
+      color: #fff;
+      border-radius: 9px;
+      box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+
+      &:active {
+        transform: scale(0.99);
+      }
+    }
+  }
+
+  .modal-task {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: #000000ab;
+    top: 0;
+    left: 0;
+
+    .modal-task-tie {
+      height: 500px;
+      max-width: 500px;
+      background-color: #323b48;
+      position: fixed;
+      top: 30%;
+      left: 37%;
+      border-radius: 9px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      width: 100%;
+
+      .modal-task-content {
+        height: 100%;
+        padding-left: 2rem;
+      }
+    }
+  }
+}
+
+
+.edit-user {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 2rem;
+}
