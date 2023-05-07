@@ -136,8 +136,6 @@ export class LoginComponent implements OnInit {
         alert('Usuário removido com sucesso');
       }
       this.pageType = 'createUser';
-      this.userName = '';
-      this.password = '';
     });
   }
 
